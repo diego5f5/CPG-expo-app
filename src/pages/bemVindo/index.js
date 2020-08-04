@@ -37,7 +37,7 @@ export default function BemVindo({ navigation }) {
 
           <TouchableOpacity
             style={styles.continuarBtn}
-            activeOpacity={0.5}
+            activeOpacity={0.8}
             onPress={() => {
               handleContinue();
             }}

@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
+    backgroundColor: '#DCDCDC',
   },
   bemVindoText: {
     textAlign: "center",
@@ -31,6 +32,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
+    elevation: 3,
   },
   btnText: {
     color: "#000",
