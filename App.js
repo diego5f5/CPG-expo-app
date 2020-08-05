@@ -8,7 +8,7 @@ YellowBox.ignoreWarnings(["Unrecognized WebSocket"]);
 export default function App() {
   return (
     <>
-      <StatusBar barStyle={"dark-content"} backgroundColor={"#9bccda"} />
+      <StatusBar barStyle={"light-content"} backgroundColor={"#5f67ec"} />
       <Routes />
     </>
   );

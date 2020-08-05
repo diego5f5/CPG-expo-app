@@ -22,17 +22,23 @@ function Routes() {
         <Stack.Screen
           name="BemVindo"
           component={BemVindo}
-          options={{ title: "Bem-Vindo" }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="EfetuarCalculo"
           component={EfetuarCalculo}
-          options={{ title: "Efetuar Cálculo" }}
+          options={{
+            headerShown: false,
+          }}
         />
         <Stack.Screen
           name="CalculosSalvos"
           component={CalculosSalvos}
-          options={{ title: "Cálculos Salvos" }}
+          options={{
+            headerShown: false,
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
