@@ -4,10 +4,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: '#DCDCDC',
+    backgroundColor: "#DCDCDC",
   },
   infoParedeContainer: {
     marginTop: 20,
+  },
+  infoText: {
+    fontSize: 20,
   },
   infoPlacaContainer: {
     marginTop: 20,
@@ -21,33 +24,49 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   inputDefault: {
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderRadius: 10,
     height: 40,
     padding: 5,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
+  },
+  labelContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 5,
   },
   labelDefault: {
     // textAlign: "center",
     marginBottom: 5,
   },
   shapeContainer: {
-    height: 80,
-    width: 80,
-    borderWidth: 1,
+    height: 90,
+    width: 90,
     borderRadius: 20,
     marginHorizontal: 10,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     elevation: 5,
     marginVertical: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  shapeContainerSelected: {
+    height: 90,
+    width: 90,
+    borderRadius: 20,
+    marginHorizontal: 10,
+    backgroundColor: "#9bccda",
+    elevation: 5,
+    marginVertical: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
   selectionShapesContainer: {
-    marginTop: 20,
+    marginTop: 30,
   },
   selectionShapesText: {
     marginBottom: 0,
+    fontSize: 20,
   },
 });
 

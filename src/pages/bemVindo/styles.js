@@ -4,11 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "space-between",
-    backgroundColor: '#DCDCDC',
+    backgroundColor: "#DCDCDC",
+    paddingTop: 30,
   },
   bemVindoText: {
     textAlign: "center",
-    marginTop: 30,
     marginHorizontal: 30,
     fontSize: 18,
   },
