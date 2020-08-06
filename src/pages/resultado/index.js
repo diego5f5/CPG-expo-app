@@ -9,16 +9,17 @@ import {
 } from "react-native";
 import Header from "../../components/header";
 
-export default function CalculosSalvos({ navigation }) {
+export default function Resultado({ navigation }) {
   return (
     <>
       <View>
         <Header
-          goBack={false}
-          title={"CÁLCULOS SALVOS"}
+          goBack={true}
+          title={"RESULTADO"}
+          info={true}
           navigation={navigation}
         />
-        <Text>Cálculos Salvos</Text>
+        <Text>Resultado</Text>
       </View>
     </>
   );

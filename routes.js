@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import BemVindo from "./src/pages/bemVindo";
 import EfetuarCalculo from "./src/pages/efetuarCalculo";
-import CalculosSalvos from "./src/pages/calculosSalvos";
+import Resultado from "./src/pages/resultado";
 
 const Stack = createStackNavigator();
 
@@ -34,8 +34,8 @@ function Routes() {
           }}
         />
         <Stack.Screen
-          name="CalculosSalvos"
-          component={CalculosSalvos}
+          name="Resultado"
+          component={Resultado}
           options={{
             headerShown: false,
           }}

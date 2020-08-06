@@ -11,7 +11,7 @@ import {
 
 import styles from "./styles.js";
 
-export default function Header({ navigation, goBack, title }) {
+export default function Header({ navigation, goBack, title, info }) {
   return (
     <>
       <View
@@ -57,17 +57,19 @@ export default function Header({ navigation, goBack, title }) {
           </Text>
         </View>
         <View style={{ width: 50 }}>
-          <TouchableOpacity
-            activeOpacity={0.5}
-            onPress={() => {
-              navigation.navigate("BemVindo");
-            }}
-          >
-            <Image
-              style={{ width: 20, height: 20 }}
-              source={require("../../assets/img/interrogation.png")}
-            />
-          </TouchableOpacity>
+          {info ? (
+            <TouchableOpacity
+              activeOpacity={0.5}
+              onPress={() => {
+                navigation.navigate("BemVindo");
+              }}
+            >
+              <Image
+                style={{ width: 20, height: 20 }}
+                source={require("../../assets/img/interrogation.png")}
+              />
+            </TouchableOpacity>
+          ) : null}
         </View>
       </View>
     </>

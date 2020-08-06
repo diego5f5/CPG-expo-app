@@ -4,7 +4,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 20,
-    backgroundColor: "#efefef",
   },
   infoParedeContainer: {
     marginTop: 20,
@@ -74,18 +73,19 @@ const styles = StyleSheet.create({
   },
   calcularBtn: {
     backgroundColor: "#5f67ec",
-    marginTop: 60,
+    marginTop: 50,
     marginHorizontal: 0,
     height: 50,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 15,
     elevation: 4,
+    marginBottom: 20,
   },
   btnText: {
     color: "#fff",
     fontWeight: "bold",
-    fontSize: 18,
+    fontSize: 15,
   },
 });
 

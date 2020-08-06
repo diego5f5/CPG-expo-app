@@ -45,9 +45,9 @@ export default function BemVindo({ navigation }) {
                 deve ser descrita como "0.40".
               </Text>
               <Text style={styles.bemVindoText}>
-                Ao fim de cada cálculo realizado, o usuário pode salvar estas
-                informações para uma eventual consulta, além de poder efetuar
-                novos cálculos.
+                Ao fim de cada cálculo realizado, há a possibilidade de
+                compartilhar estas informações, além de poder efetuar novos
+                cálculos.
               </Text>
             </ScrollView>
           </View>
