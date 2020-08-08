@@ -14,29 +14,25 @@ export default function calcFunction(
     alturaTrianguloEquilatero = (ladoPlaca * Math.sqrt(3)) / 2;
   }
 
-  if (activedShape.quadrado) {
-    areaPlaca = alturaPlaca * alturaPlaca;
+  if (activedShape.quadrado || activedShape.retangulo) {
+    areaPlaca = alturaPlaca * larguraPlaca;
   } else {
-    if (activedShape.retangulo) {
-      areaPlaca = alturaPlaca * larguraPlaca;
+    if (activedShape.triangulo) {
+      areaPlaca = (ladoPlaca * alturaTrianguloEquilatero) / 2;
     } else {
-      if (activedShape.triangulo) {
-        areaPlaca = (ladoPlaca * alturaTrianguloEquilatero) / 2;
-      } else {
-        if (activedShape.hexagono) {
-          areaPlaca = ((ladoPlaca * alturaTrianguloEquilatero) / 2) * 6;
-        }
+      if (activedShape.hexagono) {
+        areaPlaca = ((ladoPlaca * alturaTrianguloEquilatero) / 2) * 6;
       }
     }
   }
 
   const placasQTD = areaParede / areaPlaca;
 
-  const result = {
+  // const result = ;
+
+  return {
     areaParede,
     areaPlaca,
     placasPorParede: Math.round(placasQTD),
   };
-
-  return result;
 }

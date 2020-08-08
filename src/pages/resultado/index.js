@@ -9,7 +9,9 @@ import {
 } from "react-native";
 import Header from "../../components/header";
 
-export default function Resultado({ navigation }) {
+export default function Resultado({ navigation, route }) {
+  const result = route.params;
+
   return (
     <>
       <View>
@@ -19,7 +21,7 @@ export default function Resultado({ navigation }) {
           info={true}
           navigation={navigation}
         />
-        <Text>Resultado</Text>
+        <Text>{result.placasPorParede}</Text>
       </View>
     </>
   );

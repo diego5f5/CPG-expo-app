@@ -8,6 +8,9 @@ import {
   Keyboard,
   TouchableWithoutFeedback,
   AsyncStorage,
+  Alert,
+  Platform,
+  KeyboardAvoidingView,
 } from "react-native";
 
 import Header from "../../components/header";
@@ -35,19 +38,55 @@ export default function EfetuarCalculo({ navigation }) {
   const [larguraPlaca, setLarguraPlaca] = useState("");
   const [lado, setLado] = useState("");
 
-  const handleVerification = () => {
+  const doVerification = () => {
+    if (
+      (activedShape.quadrado || activedShape.retangulo) &&
+      (alturaParede === "" ||
+        larguraParede === "" ||
+        alturaPlaca === "" ||
+        larguraPlaca === "")
+    ) {
+      Alert.alert(
+        "Erro!",
+        "Verifique se todos os campos foram preenchidos.",
+        [{ text: "OK" }],
+        { cancelable: true }
+      );
+      return false;
+    } else {
+      if (
+        (activedShape.triangulo || activedShape.hexagono) &&
+        (alturaParede === "" || larguraParede === "" || lado === "")
+      ) {
+        Alert.alert(
+          "Erro!",
+          "Verifique se todos os campos foram preenchidos.",
+          [{ text: "OK" }],
+          { cancelable: true }
+        );
+        return false;
+      } else {
+        return true;
+      }
+    }
+
+    // return true;
+  };
+
+  const handlePress = () => {
     // Fazer verificação dos inputs, se tudo estiver ok, chamar função de cálculo;
-    console.log(
-      CalcFunction(
+    if (doVerification() === true) {
+      const result = CalcFunction(
         activedShape,
         alturaParede,
         larguraParede,
         alturaPlaca,
         larguraPlaca,
         lado
-      )
-    );
-    navigation.navigate("Resultado");
+      );
+
+      navigation.navigate("Resultado", result);
+    }
   };
 
   const cleanInputs = () => {
@@ -74,8 +113,11 @@ export default function EfetuarCalculo({ navigation }) {
             defaultValue={alturaPlaca}
             onChangeText={(text) => {
               setAlturaPlaca(text);
+              setLarguraPlaca(text);
             }}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -101,8 +143,11 @@ export default function EfetuarCalculo({ navigation }) {
             defaultValue={alturaPlaca}
             onChangeText={(text) => {
               setAlturaPlaca(text);
+              setLarguraPlaca(text);
             }}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -126,7 +171,9 @@ export default function EfetuarCalculo({ navigation }) {
             style={styles.inputDefault}
             value={alturaPlaca}
             onChangeText={(text) => setAlturaPlaca(text)}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -142,7 +189,9 @@ export default function EfetuarCalculo({ navigation }) {
             style={styles.inputDefault}
             value={larguraPlaca}
             onChangeText={(text) => setLarguraPlaca(text)}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -166,7 +215,9 @@ export default function EfetuarCalculo({ navigation }) {
             style={styles.inputDefault}
             value={lado}
             onChangeText={(text) => setLado(text)}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -202,7 +253,9 @@ export default function EfetuarCalculo({ navigation }) {
             style={styles.inputDefault}
             value={lado}
             onChangeText={(text) => setLado(text)}
-            keyboardType="numeric"
+            keyboardType={
+              Platform.OS == "ios" ? "numbers-and-punctuation" : "numeric"
+            }
             placeholder="Ex:0.45"
           />
         </View>
@@ -224,190 +277,205 @@ export default function EfetuarCalculo({ navigation }) {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "space-between",
-          backgroundColor: "#efefef",
-        }}
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior={Platform.OS == "ios" ? "padding" : "height"}
       >
-        <Header
-          goBack={false}
-          title={"EFETUAR CÁLCULO"}
-          info={true}
-          navigation={navigation}
-        />
-        <ScrollView>
-          <View style={styles.container}>
-            <View style={styles.infoParedeContainer}>
-              <Text style={styles.infoText}>Dados da parede:</Text>
-              <View style={styles.inputsContainer}>
-                <View style={styles.labelsAndInputs}>
-                  <View style={styles.labelContainer}>
-                    <Image
-                      style={{ width: 35, height: 35 }}
-                      source={require("../../assets/img/height.png")}
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "space-between",
+            backgroundColor: "#efefef",
+          }}
+        >
+          <Header
+            goBack={false}
+            title={"EFETUAR CÁLCULO"}
+            info={true}
+            navigation={navigation}
+          />
+          <ScrollView>
+            <View style={styles.container}>
+              <View style={styles.infoParedeContainer}>
+                <Text style={styles.infoText}>Dados da parede:</Text>
+                <View style={styles.inputsContainer}>
+                  <View style={styles.labelsAndInputs}>
+                    <View style={styles.labelContainer}>
+                      <Image
+                        style={{ width: 35, height: 35 }}
+                        source={require("../../assets/img/height.png")}
+                      />
+                      <Text style={styles.labelDefault}>Altura:</Text>
+                    </View>
+                    <TextInput
+                      style={styles.inputDefault}
+                      value={alturaParede}
+                      onChangeText={(text) => setAlturaParede(text)}
+                      keyboardType={
+                        Platform.OS == "ios"
+                          ? "numbers-and-punctuation"
+                          : "numeric"
+                      }
+                      placeholder="Ex:3.20"
                     />
-                    <Text style={styles.labelDefault}>Altura:</Text>
                   </View>
-                  <TextInput
-                    style={styles.inputDefault}
-                    value={alturaParede}
-                    onChangeText={(text) => setAlturaParede(text)}
-                    keyboardType="numeric"
-                    placeholder="Ex:3.20"
-                  />
-                </View>
-                <View style={styles.labelsAndInputs}>
-                  <View style={styles.labelContainer}>
-                    <Image
-                      style={{ width: 35, height: 35, marginRight: 8 }}
-                      source={require("../../assets/img/width.png")}
+                  <View style={styles.labelsAndInputs}>
+                    <View style={styles.labelContainer}>
+                      <Image
+                        style={{ width: 35, height: 35, marginRight: 8 }}
+                        source={require("../../assets/img/width.png")}
+                      />
+                      <Text style={styles.labelDefault}>Largura:</Text>
+                    </View>
+                    <TextInput
+                      style={styles.inputDefault}
+                      value={larguraParede}
+                      onChangeText={(text) => setLarguraParede(text)}
+                      keyboardType={
+                        Platform.OS == "ios"
+                          ? "numbers-and-punctuation"
+                          : "numeric"
+                      }
+                      placeholder="Ex:3.20"
                     />
-                    <Text style={styles.labelDefault}>Largura:</Text>
                   </View>
-                  <TextInput
-                    style={styles.inputDefault}
-                    value={larguraParede}
-                    onChangeText={(text) => setLarguraParede(text)}
-                    keyboardType="numeric"
-                    placeholder="Ex:3.20"
-                  />
                 </View>
               </View>
-            </View>
 
-            <View style={styles.selectionShapesContainer}>
-              <Text style={styles.selectionShapesText}>Formatos de placa:</Text>
-              <ScrollView
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
+              <View style={styles.selectionShapesContainer}>
+                <Text style={styles.selectionShapesText}>
+                  Formatos de placa:
+                </Text>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                >
+                  {/* Quadrado */}
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      activedShape.quadrado
+                        ? styles.shapeContainerSelected
+                        : styles.shapeContainer
+                    }
+                    onPress={() => {
+                      cleanInputs();
+                      setActivedShape({
+                        quadrado: true,
+                        retangulo: false,
+                        triangulo: false,
+                        hexagono: false,
+                      });
+                    }}
+                  >
+                    <Image
+                      style={{ width: 48, height: 48 }}
+                      source={require("../../assets/img/quadrado.png")}
+                    />
+                  </TouchableOpacity>
+                  {/* Retângulo */}
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      activedShape.retangulo
+                        ? styles.shapeContainerSelected
+                        : styles.shapeContainer
+                    }
+                    onPress={() => {
+                      cleanInputs();
+                      setActivedShape({
+                        quadrado: false,
+                        retangulo: true,
+                        triangulo: false,
+                        hexagono: false,
+                      });
+                    }}
+                  >
+                    <Image
+                      style={{ width: 48, height: 48 }}
+                      source={require("../../assets/img/retangulo.png")}
+                    />
+                  </TouchableOpacity>
+                  {/* Triângulo */}
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      activedShape.triangulo
+                        ? styles.shapeContainerSelected
+                        : styles.shapeContainer
+                    }
+                    onPress={() => {
+                      cleanInputs();
+                      setActivedShape({
+                        quadrado: false,
+                        retangulo: false,
+                        triangulo: true,
+                        hexagono: false,
+                      });
+                    }}
+                  >
+                    <Image
+                      style={{ width: 48, height: 48 }}
+                      source={require("../../assets/img/triangulo.png")}
+                    />
+                  </TouchableOpacity>
+                  {/* Hexágono */}
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    style={
+                      activedShape.hexagono
+                        ? styles.shapeContainerSelected
+                        : styles.shapeContainer
+                    }
+                    onPress={() => {
+                      cleanInputs();
+                      setActivedShape({
+                        quadrado: false,
+                        retangulo: false,
+                        triangulo: false,
+                        hexagono: true,
+                      });
+                    }}
+                  >
+                    <Image
+                      style={{ width: 48, height: 48 }}
+                      source={require("../../assets/img/hexagono.png")}
+                    />
+                  </TouchableOpacity>
+                </ScrollView>
+              </View>
+
+              <View style={styles.infoPlacaContainer}>
+                <Text style={styles.infoText}>Dados da placa:</Text>
+
+                {activedShape.quadrado ? InputsQuadrado() : null}
+
+                {activedShape.retangulo ? InputsRetangulo() : null}
+
+                {activedShape.triangulo ? InputsTriangulo() : null}
+
+                {activedShape.hexagono ? InputsHexagono() : null}
+              </View>
+
+              <TouchableOpacity
+                style={styles.calcularBtn}
+                activeOpacity={0.8}
+                onPress={() => {
+                  handlePress();
+                }}
               >
-                {/* Quadrado */}
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    activedShape.quadrado
-                      ? styles.shapeContainerSelected
-                      : styles.shapeContainer
-                  }
-                  onPress={() => {
-                    cleanInputs();
-                    setActivedShape({
-                      quadrado: true,
-                      retangulo: false,
-                      triangulo: false,
-                      hexagono: false,
-                    });
-                  }}
-                >
+                <View style={{ flexDirection: "row", alignItems: "center" }}>
                   <Image
-                    style={{ width: 48, height: 48 }}
-                    source={require("../../assets/img/quadrado.png")}
+                    style={{ width: 35, height: 35, marginRight: 8 }}
+                    source={require("../../assets/img/calculator.png")}
                   />
-                </TouchableOpacity>
-                {/* Retângulo */}
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    activedShape.retangulo
-                      ? styles.shapeContainerSelected
-                      : styles.shapeContainer
-                  }
-                  onPress={() => {
-                    cleanInputs();
-                    setActivedShape({
-                      quadrado: false,
-                      retangulo: true,
-                      triangulo: false,
-                      hexagono: false,
-                    });
-                  }}
-                >
-                  <Image
-                    style={{ width: 48, height: 48 }}
-                    source={require("../../assets/img/retangulo.png")}
-                  />
-                </TouchableOpacity>
-                {/* Triângulo */}
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    activedShape.triangulo
-                      ? styles.shapeContainerSelected
-                      : styles.shapeContainer
-                  }
-                  onPress={() => {
-                    cleanInputs();
-                    setActivedShape({
-                      quadrado: false,
-                      retangulo: false,
-                      triangulo: true,
-                      hexagono: false,
-                    });
-                  }}
-                >
-                  <Image
-                    style={{ width: 48, height: 48 }}
-                    source={require("../../assets/img/triangulo.png")}
-                  />
-                </TouchableOpacity>
-                {/* Hexágono */}
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  style={
-                    activedShape.hexagono
-                      ? styles.shapeContainerSelected
-                      : styles.shapeContainer
-                  }
-                  onPress={() => {
-                    cleanInputs();
-                    setActivedShape({
-                      quadrado: false,
-                      retangulo: false,
-                      triangulo: false,
-                      hexagono: true,
-                    });
-                  }}
-                >
-                  <Image
-                    style={{ width: 48, height: 48 }}
-                    source={require("../../assets/img/hexagono.png")}
-                  />
-                </TouchableOpacity>
-              </ScrollView>
+                  <Text style={styles.btnText}>CALCULAR</Text>
+                </View>
+              </TouchableOpacity>
             </View>
-
-            <View style={styles.infoPlacaContainer}>
-              <Text style={styles.infoText}>Dados da placa:</Text>
-
-              {activedShape.quadrado ? InputsQuadrado() : null}
-
-              {activedShape.retangulo ? InputsRetangulo() : null}
-
-              {activedShape.triangulo ? InputsTriangulo() : null}
-
-              {activedShape.hexagono ? InputsHexagono() : null}
-            </View>
-
-            <TouchableOpacity
-              style={styles.calcularBtn}
-              activeOpacity={0.8}
-              onPress={() => {
-                handleVerification();
-              }}
-            >
-              <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Image
-                  style={{ width: 35, height: 35, marginRight: 8 }}
-                  source={require("../../assets/img/calculator.png")}
-                />
-                <Text style={styles.btnText}>CALCULAR</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </ScrollView>
-      </View>
+          </ScrollView>
+        </View>
+      </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 }

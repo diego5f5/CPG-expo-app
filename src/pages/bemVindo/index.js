@@ -1,24 +1,11 @@
-import React, { useState } from "react";
-import {
-  ScrollView,
-  View,
-  Text,
-  TouchableOpacity,
-  Alert,
-  Image,
-} from "react-native";
+import React from "react";
+import { ScrollView, View, Text, TouchableOpacity, Image } from "react-native";
+
 import Header from "../../components/header";
 
 import styles from "./styles.js";
 
 export default function BemVindo({ navigation }) {
-  const [showAgain, setShowAgain] = useState(false);
-
-  const handleContinue = () => {
-    //setar variavel em local storage para armazenar opcao do usuário.
-    navigation.replace("EfetuarCalculo");
-  };
-
   return (
     <>
       <View style={styles.container}>
@@ -53,28 +40,10 @@ export default function BemVindo({ navigation }) {
           </View>
           <View>
             <TouchableOpacity
-              style={styles.showAgainContainer}
-              activeOpacity={0.5}
-              onPress={() => {
-                setShowAgain(!showAgain);
-              }}
-            >
-              <Image
-                style={{ width: 25, height: 25, marginRight: 3 }}
-                source={
-                  showAgain
-                    ? require("../../assets/img/check-box.png")
-                    : require("../../assets/img/times-square.png")
-                }
-              />
-              <Text style={styles.showAgainText}>Não exibir novamente</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
               style={styles.continuarBtn}
               activeOpacity={0.8}
               onPress={() => {
-                handleContinue();
+                navigation.replace("EfetuarCalculo");
               }}
             >
               <View>

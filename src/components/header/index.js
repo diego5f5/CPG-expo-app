@@ -7,6 +7,7 @@ import {
   Alert,
   Image,
   ImagePropTypes,
+  Platform,
 } from "react-native";
 
 import styles from "./styles.js";
@@ -18,7 +19,7 @@ export default function Header({ navigation, goBack, title, info }) {
         style={{
           paddingTop: Platform.OS == "ios" ? 15 : 0,
           width: "100%",
-          height: Platform.OS == "ios" ? 90 : 50,
+          height: Platform.OS == "ios" ? 60 : 50,
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "row",
@@ -27,14 +28,18 @@ export default function Header({ navigation, goBack, title, info }) {
           elevation: 5,
         }}
       >
-        <View
-          style={{ justifyContent: "center", alignItems: "center", width: 50 }}
-        >
+        <View>
           {goBack ? (
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => {
                 navigation.goBack();
+              }}
+              style={{
+                width: 50,
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Image
@@ -42,7 +47,13 @@ export default function Header({ navigation, goBack, title, info }) {
                 source={require("../../assets/img/arrow.png")}
               />
             </TouchableOpacity>
-          ) : null}
+          ) : (
+            <View
+              style={{
+                width: 50,
+              }}
+            ></View>
+          )}
         </View>
         <View>
           <Text
@@ -56,12 +67,18 @@ export default function Header({ navigation, goBack, title, info }) {
             {title}
           </Text>
         </View>
-        <View style={{ width: 50 }}>
+        <View>
           {info ? (
             <TouchableOpacity
               activeOpacity={0.5}
               onPress={() => {
                 navigation.navigate("BemVindo");
+              }}
+              style={{
+                width: 50,
+                height: "100%",
+                justifyContent: "center",
+                alignItems: "center",
               }}
             >
               <Image
@@ -69,7 +86,13 @@ export default function Header({ navigation, goBack, title, info }) {
                 source={require("../../assets/img/interrogation.png")}
               />
             </TouchableOpacity>
-          ) : null}
+          ) : (
+            <View
+              style={{
+                width: 50,
+              }}
+            ></View>
+          )}
         </View>
       </View>
     </>
