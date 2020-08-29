@@ -22,7 +22,7 @@ export default function BemVindo({ navigation }) {
               }}
             >
               <Text style={styles.bemVindoText}>
-                O App CPG (Cálculo para Placas de Gesso), permite calcular de
+                O App CPG (Calculadora para Placas de Gesso), permite calcular de
                 forma fácil e prática, a quantidade aproximada de placas/peças
                 de gesso que podem ser instaladas em uma determinada parede.
               </Text>
@@ -34,7 +34,7 @@ export default function BemVindo({ navigation }) {
               <Text style={styles.bemVindoText}>
                 Ao fim de cada cálculo realizado, há a possibilidade de
                 compartilhar estas informações, além de poder efetuar novos
-                cálculos.
+                cálculos!
               </Text>
             </ScrollView>
           </View>

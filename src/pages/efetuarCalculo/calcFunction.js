@@ -1,12 +1,12 @@
 export default function calcFunction(
   activedShape,
   alturaParede,
-  LarguraParede,
+  larguraParede,
   alturaPlaca,
   larguraPlaca,
   ladoPlaca
 ) {
-  let areaParede = alturaParede * LarguraParede;
+  let areaParede = alturaParede * larguraParede;
   let areaPlaca = 0;
   let alturaTrianguloEquilatero = 0;
 
@@ -31,8 +31,12 @@ export default function calcFunction(
   // const result = ;
 
   return {
-    areaParede,
-    areaPlaca,
+    alturaParede,
+    larguraParede,
+    alturaPlaca,
+    larguraPlaca,
+    activedShape,
+    ladoPlaca,
     placasPorParede: Math.round(placasQTD),
   };
 }
