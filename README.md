@@ -59,6 +59,9 @@ From your command line:
 # Go into the repository
 $ cd CPG-expo-app
 $ yarn install
+
+# If you don't have expo-cli installed on your machine, install the dependency in your project.
+$ yarn add expo-cli
 ```
 
 ### Start
@@ -69,4 +72,6 @@ $ cd CPG-expo-app
 
 # Start application
 $ yarn start
+
+# When the application is running, open the Expo app on your phone and read the QR Code
 ```
