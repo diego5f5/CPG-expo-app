@@ -12,14 +12,6 @@
   <a href="https://www.linkedin.com/in/diegoferreirati/">
   <img alt="Made By" src="https://img.shields.io/static/v1?label=Made%20By&message=Diego%20Ferreira&color=DarkViolet&style=for-the-badge">
 	</a>
-  
-  <img alt="Languages" src="https://img.shields.io/github/languages/count/diego5f5/CPG-expo-app?style=for-the-badge">
-  
-  <img alt="Top Language" src="https://img.shields.io/github/languages/top/diego5f5/CPG-expo-app?style=for-the-badge">
-  
-  <img alt="Repo Size" src="https://img.shields.io/github/repo-size/diego5f5/CPG-expo-app?style=for-the-badge">
-  
-  <img alt="Last Commit" src="https://img.shields.io/github/last-commit/diego5f5/CPG-expo-app?style=for-the-badge">
 </p>
 
 <h4 align="center">
